@@ -8,7 +8,7 @@ def listar(conn, cursor):
     cursor = conn.cursor()
 
     # Executar a consulta SQL para listar os registros
-    cursor.execute("SELECT * FROM animais_nat")
+    cursor.execute("SELECT * FROM animais_africa")
 
     # Obter os resultados
     resultados = cursor.fetchall()
@@ -30,7 +30,7 @@ def inserir(raca,quant,risco,area):
     cursor = conn.cursor()
 
     # Executar a consulta SQL para inserir um novo registro
-    sql = "INSERT INTO animais_nat (raca,quant,risco,area) VALUES (%s, %s,%s,%s)"
+    sql = "INSERT INTO animais_africa (raca_animais,quant_animais,risco_extin,local) VALUES (%s, %s,%s,%s)"
     val = (raca,quant,risco,area)
     cursor.execute(sql, val)
 
@@ -54,7 +54,7 @@ def deletar(codigo):
     cursor = conn.cursor()
 
     # Executar a consulta SQL para deletar o registro
-    sql = "DELETE FROM animais_nat WHERE id = %s"
+    sql = "DELETE FROM animais_africa WHERE id = %s"
     val = (codigo,)
     cursor.execute(sql, val)
 
@@ -97,7 +97,7 @@ while True:
     raca = input("Digite a raça do animal: ")
     quant = int(input("Digite a quantidade de animais: "))
     risco = input("Possuem risco de extinção? (sim ou não) ")
-    area =input("Qual área eles são encontrados (norte, sul, leste ou oeste).")
+    area =input("Qual área eles são encontrados (norte, sul, leste ou oeste): ")
     
     
     inserir(raca,quant,risco,area)

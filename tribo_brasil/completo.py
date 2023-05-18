@@ -6,7 +6,7 @@ def listar(conn, cursor):
     # Criando um objeto cursor para executar as consultas SQL
     cursor = conn.cursor()
     # executar a consulta SQL para listar os registros
-    cursor.execute("SELECT * FROM tribos_brasileiras")
+    cursor.execute("SELECT * FROM tribo")
     #obter os resultados
     resultados = cursor.fetchall()
     # imprimir os resultados
@@ -23,7 +23,7 @@ def inserir(nome_tribo, num_hab, renda_mensal, escolaridade, trab_salar):
     # Criando um objeto cursor para executar as consultas SQL
     cursor = conn.cursor()
     # executar a consulta SQL para listar os registros
-    sql = 'INSERT INTO tribos_brasileiras (nome_tribo, num_hab, renda_mensal, escolaridade, trab_salar) VALUES (%s, %s)'
+    sql = 'INSERT INTO tribo (nome_tribo, num_hab, renda_mensal, escolaridade, trab_salar) VALUES (%s, %s, %s, %s, %s)'
     val = (nome_tribo, num_hab, renda_mensal, escolaridade, trab_salar)
     cursor.execute(sql, val)
     #commit da transação
@@ -40,7 +40,7 @@ def deletar(codigo):
     # Criando um objeto cursor para executar as consultas SQL
     cursor = conn.cursor()
     # executar a consulta SQL para listar os registros
-    sql = 'DELETE FROM tribos_brasileiras WHERE codigo = %s'
+    sql = 'DELETE FROM tribo WHERE id = %s'
     val = (codigo,)
     cursor.execute(sql, val)
     #commit da transação
