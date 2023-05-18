@@ -72,6 +72,30 @@ def deletar(codigo):
     conn.close()
 
 
+def atualizar(raca,quant,risco,area):
+    # Abrir uma conexão com o banco de dados
+    conn = conectar()
+
+    # Criando um objeto cursor para executar as consultas SQL
+    cursor = conn.cursor()
+
+    # Executar a consulta SQL para atualizar o registro
+    sql = "UPDATE animais_africa SET raca= %s,quant= %s,risco= %s,area= %s WHERE id = %s"
+    val = (raca,quant,risco,area)
+    cursor.execute(sql, val)
+
+    # Commit da transação
+    conn.commit()
+
+    # Verificar se algum registro foi atualizado
+    if cursor.rowcount == 0:
+        print("Nenhum registro atualizado.")
+    else:
+        print("Registro atualizado com sucesso.")
+
+    # Fechar a conexão e o cursor
+    cursor.close()
+    conn.close()
 
 
 # chama a função conectar
@@ -107,6 +131,14 @@ while True:
     codigo = int(input("Digite o id do animal que deseja deletar: "))
     deletar(codigo)
 
+  elif opcao == 4:
+    # Atualizar um tribo
+    raca = input("Digite a raça do animal: ")
+    quant = int(input("Digite a quantidade de animais: "))
+    risco = input("Possuem risco de extinção? (sim ou não) ")
+    area =input("Qual área eles são encontrados (norte, sul, leste ou oeste): ")
+    atualizar(raca,quant,risco,area)
+    
   elif opcao == 0:
     
     break
